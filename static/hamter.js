@@ -1,3 +1,3 @@
 hamterface.onclick = function(){
-    alert("hi")
+    location.replace("https://sandcastle3.github.io/clickerclicker?hamter")
 };
