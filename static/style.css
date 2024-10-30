@@ -1,5 +1,16 @@
+body {
+    background-image: url("./vaporwave.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 h1, h2, p, button {
-    font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: white;
+}
+
+button {
+    color: black;
 }
 
 #catmessage {

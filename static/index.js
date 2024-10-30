@@ -2,7 +2,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const cursorchange = document.getElementById("cursorchange");
     const insertcode = document.getElementById("insertcode");
     const catmessage = document.getElementById("catmessage");
-    let catcount = 0;
+    let catcount = {
+        1: false,
+        2: false
+    }
     let totalcats = 2;
     let cursoridx = 6;
     let cursoreffect = new cursoreffects.trailingCursor();
@@ -43,8 +46,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     catmessage.onclick = function() {
         document.getElementById("cats").hidden = false;
         document.getElementById("cat1").hidden = false;
-        catcount += 1;
-        if (catcount == totalcats) {
+        catcount[1] = true;
+        if (catcount[1] && catcount[2]) {
             alert("You found all the cats 🐱🎉");
         }
     }
@@ -53,8 +56,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (code == "09ab12va10@+=") {
             document.getElementById("cats").hidden = false;
             document.getElementById("cat2").hidden = false;
-            catcount += 1;
-            if (catcount == totalcats) {
+            catcount[2] = true;
+            if (catcount[1] && catcount[2]) {
                 alert("You found all the cats 🐱🎉");
             }
         } else {
