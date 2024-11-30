@@ -1,0 +1,13 @@
+/*Discord,bradhamster*/
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: normal;
+    font-weight: normal;
+    src: local('gg sans Normal Regular'), url('/static/gg-sans.woff') format('woff');
+}
+    
+:root {
+    --nav-color: rgb(88, 101, 242);
+    --font-family: "gg sans";
+}
