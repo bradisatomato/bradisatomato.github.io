@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const pic = document.querySelector(".pic");
+    const counter = document.querySelector(".counter");
+    const addbpc = document.querySelector(".addbpc");
+    const addbps = document.querySelector(".addbps");
+    const macaronimode = document.querySelector(".macaronimode");
+    const logoText = document.querySelector(".logo-text");
+    const footerText = document.querySelector(".footer-text");
+    const favicon = document.querySelector(".favicon");
+
     function setCookie(name, value) {
         const date = new Date();
         date.setFullYear(date.getFullYear() + 100);
@@ -17,16 +26,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return null;
     }
 
-    const pic = document.querySelector(".pic");
-    const counter = document.querySelector(".counter");
-    const addbpc = document.querySelector(".addbpc");
-    const addbps = document.querySelector(".addbps"); // New button for BPS
+    let typedSequence = "";
+    document.addEventListener("keydown", (event) => {
+        typedSequence += event.key.toLowerCase();
+        if (typedSequence.length > 8) {
+            typedSequence = typedSequence.slice(-8);
+        }
+        if (typedSequence === "macaroni") {
+            macaronimode.style = "display: block;";
+            typedSequence = "";
+        }
+    });
 
     let brad = Number(getCookie("brad")) || 0;
     let bpc = Number(getCookie("bpc")) || 1;
     let bps = Number(getCookie("bps")) || 0;
     let bpccost = Number(getCookie("bpccost")) || 100;
-    let bpscost = Number(getCookie("bpscost")) || 250; // Cost to increase BPS
+    let bpscost = Number(getCookie("bpscost")) || 250;
+    let descriptor = "brad";
 
     const updateCosts = () => {
         bpccost = Math.ceil(bpccost * 1.5);
@@ -43,11 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setCookie("bpccost", bpccost.toString());
         setCookie("bpscost", bpscost.toString());
         
-        counter.innerHTML = `${brad.toString()} brad`;
-        addbpc.innerHTML = `+1 brad/click (${bpccost}) (at ${bpc})`;
+        counter.innerHTML = `${brad.toString()} ${descriptor}`;
+        addbpc.innerHTML = `+1 ${descriptor}/click (${bpccost}) (at ${bpc})`;
         addbpc.disabled = brad < bpccost;
 
-        addbps.innerHTML = `+1 brad/second (${bpscost}) (at ${bps})`;
+        addbps.innerHTML = `+1 ${descriptor}/second (${bpscost}) (at ${bps})`;
         addbps.disabled = brad < bpscost;
     };
 
@@ -56,6 +73,19 @@ document.addEventListener("DOMContentLoaded", () => {
             brad += bps;
             update();
         }, 1000); // Increment `brad` every second based on `bps`
+    };
+
+    const enableMacaroniMode = () => {
+        macaronimode.style = "display: none;";
+        pic.src = "/static/macaroni.png";
+        pic.width = 128;
+        pic.height = 128;
+        descriptor = "macaroni";
+        logoText.innerHTML = "Macaroni";
+        footerText.innerHTML = "macaroni 2024";
+        document.documentElement.style.setProperty("--nav-color", "rgb(100, 73, 34)");
+        document.title = "macaroni";
+        favicon.href = "/static/macaroni.ico";
     };
 
     pic.addEventListener("click", () => {
@@ -80,6 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
             update();
         }
     });
+
+    macaronimode.addEventListener("click", () => {
+        enableMacaroniMode();
+    })
 
     startBps(); // Start the Brad Per Second system
     update(); // Initial UI update
