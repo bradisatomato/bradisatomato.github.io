@@ -1,11 +1,12 @@
 // Utility functions
-function set_cookie(name, value) {
+function setCookie(name, value) {
     const date = new Date();
     date.setFullYear(date.getFullYear() + 100);
     const expires = "; expires=" + date.toUTCString();
     document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
 }
-function get_cookie(name) {
+
+function getCookie(name) {
     const nameEQ = name + "=";
     const cookies = document.cookie.split(';');
     for (let i = 0; i < cookies.length; i++) {
