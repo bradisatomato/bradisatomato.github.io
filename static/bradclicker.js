@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const pic = document.querySelector(".pic");
     const counter = document.querySelector(".counter");
     const addbpc = document.querySelector(".addbpc");
-    const addbps = document.querySelector(".addbps");
     const macaronimode = document.querySelector(".macaronimode");
     const logoText = document.querySelector(".logo-text");
     const footerText = document.querySelector(".footer-text");
@@ -40,39 +39,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let brad = Number(getCookie("brad")) || 0;
     let bpc = Number(getCookie("bpc")) || 1;
-    let bps = Number(getCookie("bps")) || 0;
     let bpccost = Number(getCookie("bpccost")) || 100;
-    let bpscost = Number(getCookie("bpscost")) || 250;
     let descriptor = "brad";
 
     const updateCosts = () => {
         bpccost = Math.ceil(bpccost * 1.5);
         setCookie("bpccost", bpccost.toString());
-
-        bpscost = Math.ceil(bpscost * 2);
-        setCookie("bpscost", bpscost.toString());
     };
 
     const update = () => {
         setCookie("brad", brad.toString());
         setCookie("bpc", bpc.toString());
-        setCookie("bps", bps.toString());
         setCookie("bpccost", bpccost.toString());
-        setCookie("bpscost", bpscost.toString());
         
         counter.innerHTML = `${brad.toString()} ${descriptor}`;
         addbpc.innerHTML = `+1 ${descriptor}/click (${bpccost}) (at ${bpc})`;
         addbpc.disabled = brad < bpccost;
-
-        addbps.innerHTML = `+1 ${descriptor}/second (${bpscost}) (at ${bps})`;
-        addbps.disabled = brad < bpscost;
-    };
-
-    const startBps = () => {
-        setInterval(() => {
-            brad += bps;
-            update();
-        }, 1000); // Increment `brad` every second based on `bps`
     };
 
     const enableMacaroniMode = () => {
@@ -102,19 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    addbps.addEventListener("click", () => {
-        if (brad >= bpscost) {
-            brad -= bpscost;
-            bps += 1;
-            updateCosts();
-            update();
-        }
-    });
-
     macaronimode.addEventListener("click", () => {
         enableMacaroniMode();
     })
 
-    startBps(); // Start the Brad Per Second system
     update(); // Initial UI update
 });
