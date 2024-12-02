@@ -44,6 +44,7 @@ const navSlide = () => {
 
 const theme = () => {
     const uploadButton = document.querySelector(".upload-theme");
+    const removeButton = document.querySelector(".remove-theme");
     const fileInput = document.querySelector(".theme-upload");
     const themeInfo = document.querySelector(".theme-info");
 
@@ -54,6 +55,10 @@ const theme = () => {
     uploadButton.addEventListener("click", () => {
         fileInput.click();
     });
+
+    removeButton.addEventListener("click", () => {
+        removeTheme();
+    })
 
     fileInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
@@ -92,6 +97,11 @@ const theme = () => {
 
     function saveTheme(cssContent) {
         localStorage.setItem("customTheme", cssContent);
+    }
+
+    function removeTheme() {
+        localStorage.setItem("customTheme", null);
+        document.location.reload();
     }
 
     function applySavedTheme() {
