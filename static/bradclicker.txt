@@ -1,0 +1,35 @@
+Let's make a game!
+	name:Brad Clicker
+	by:bradhamster
+	desc:The second official version of Brad Clicker, improved with IGM :)
+	created:3/12/2024
+	updated:3/12/2024
+	version:1
+
+Settings
+    stylesheet:https://bradisatomato.github.io/static/bradclicker.css
+
+Resources
+	*brad
+		name:Brad
+		desc:brad >:)
+		icon:https://bradisatomato.github.io/static/brad.png
+		class:noBackground brad
+		show earned
+
+Buttons
+	*clickbrad
+		name:Brad
+		desc:Give you more brad
+		icon:https://bradisatomato.github.io/static/brad.png
+		on click:yield 1 brad
+		on click:anim icon wobble
+		no text
+		class:bigButton clickbrad
+	
+Upgrades
+	*betterfinger
+		name:Better finger
+		desc:Multiplies the gain of clicking the brad by 2
+		passive:multiply yield of clickbrad by 2
+		cost:100 brad

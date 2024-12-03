@@ -1,15 +1,9 @@
-.pic, .counter, button{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 10%;
+.clickbrad.icon {
+    width: 256px;
+    height: 256px;
 }
 
-.counter {
-    text-align: center;
-    padding: 10px;
-}
-
-.macaronimode {
-    display: none;
+.brad.icon {
+    width: 48px;
+    height: 48px;
 }
