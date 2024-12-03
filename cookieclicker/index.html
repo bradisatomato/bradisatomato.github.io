@@ -270,5 +270,16 @@ var App=typeof App==='undefined'?0:App;
 
 </div>
 
+<!-- Add-ons -->
+<script src="https://www.lschaefer.xyz/cookieClicker/index.js" id="hostname"></script>
+<script>
+	    var checkReady = setInterval(function() {
+        if (typeof Game.ready !== 'undefined' && Game.ready) {
+            Game.LoadMod('https://cookiemonsterteam.github.io/CookieMonster/dist/CookieMonster.js');
+            clearInterval(checkReady);
+        }
+    	}, 1000);
+</script>
+
 </body>
 </html>
