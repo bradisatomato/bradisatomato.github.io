@@ -276,6 +276,8 @@ var App=typeof App==='undefined'?0:App;
 	    var checkReady = setInterval(function() {
         if (typeof Game.ready !== 'undefined' && Game.ready) {
             Game.LoadMod('https://cookiemonsterteam.github.io/CookieMonster/dist/CookieMonster.js');
+			Game.Unlock("Perfect idling");
+			Game.Upgrades["Perfect idling"].buy();
             clearInterval(checkReady);
         }
     	}, 1000);
